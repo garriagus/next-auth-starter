@@ -1,21 +1,20 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      // El nombre que se mostrará en el formulario de inicio de sesión (por ejemplo, "Iniciar sesión con...")
-      name: "Credenciales",
-      // `credentials` se utiliza para generar un formulario en la página de inicio de sesión.
-      // Puedes especificar qué campos deben enviarse agregando claves al objeto `credentials`.
-      // Por ejemplo, dominio, nombre de usuario, contraseña, token de 2FA, etc.
-      // Puedes pasar cualquier atributo HTML a la etiqueta <input> a través del objeto.
+      // The name to display on the sign in form (e.g. "Sign in with...")
+      name: "Credentials",
+      // `credentials` is used to generate a form on the sign in page.
+      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
+      // e.g. domain, username, password, 2FA token, etc.
+      // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Nombre de usuario", type: "text", placeholder: "jsmith" },
-        password: { label: "Contraseña", type: "password" },
+        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // Agrega lógica aquí para buscar al usuario según las credenciales proporcionadas
+        // Add logic here to look up the user from the credentials supplied
         const res = await fetch("http://localhost:3000/api/login", {
           method: "POST",
           headers: {
@@ -30,13 +29,13 @@ const handler = NextAuth({
         const user = await res.json();
 
         if (user) {
-          // Cualquier objeto devuelto se guardará en la propiedad `user` del JWT
+          // Any object returned will be saved in `user` property of the JWT
           return user;
         } else {
-          // Si devuelves null, se mostrará un error y se le pedirá al usuario que verifique sus detalles.
+          // If you return null then an error will be displayed advising the user to check their details.
           return null;
 
-          // También puedes rechazar esta devolución de llamada con un Error, lo que enviará al usuario a la página de error con el mensaje de error como parámetro de consulta.
+          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),

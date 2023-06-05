@@ -1,5 +1,7 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from 'next-auth/providers/google' 
+
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -10,7 +12,7 @@ const handler = NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        username: { label: "Username", type: "text", placeholder: "nombre de usuario" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {

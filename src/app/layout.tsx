@@ -13,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Providers>
           <AppBar />
+          <h1>Esto esta es un h1 en src/layout</h1>
           {children}
         </Providers>
       </body>

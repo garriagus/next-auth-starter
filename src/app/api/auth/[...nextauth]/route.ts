@@ -1,6 +1,6 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from 'next-auth/providers/google' 
+import GoogleProvider from 'next-auth/providers/google'
 
 const handler = NextAuth({
   providers: [
@@ -41,7 +41,16 @@ const handler = NextAuth({
         }
       },
     }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
+    
+    // ** ...add more providers here
   ],
+
+
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };

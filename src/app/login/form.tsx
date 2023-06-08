@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
+import Image from "next/image";
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -97,9 +98,11 @@ export const LoginForm = () => {
         onClick={() => signIn("google", { callbackUrl })}
         role="button"
       >
-        <img
+        <Image
           className="pr-2"
           src="/images/google.svg"
+          width={130}
+          height={130}
           alt=""
           style={{ height: "2rem" }}
         />
@@ -111,9 +114,11 @@ export const LoginForm = () => {
         onClick={() => signIn("github", { callbackUrl })}
         role="button"
       >
-        <img
+        <Image
           className="pr-2"
           src="/images/github.svg"
+          width={130}
+          height={130}
           alt=""
           style={{ height: "2.2rem" }}
         />

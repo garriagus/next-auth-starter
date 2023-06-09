@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import Header from "@/components/header.component";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export default async function Profile() {
   const session = await getServerSession(authOptions);
